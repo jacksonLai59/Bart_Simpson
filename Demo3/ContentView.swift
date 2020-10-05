@@ -7,8 +7,24 @@
 
 import SwiftUI
 
+struct ball: Shape{
+    func path(in rect: CGRect) -> Path {
+        Path{(path)in
+            path.move(to: CGPoint(x:rect.width/2, y:rect.width))
+            path.addQuadCurve(to: CGPoint(x: rect.width, y: rect.width/2), control: CGPoint(x: rect.width, y: rect.width))
+            path.addQuadCurve(to: CGPoint(x: rect.width/2, y: 0), control: CGPoint(x: rect.width, y: 0))
+            path.addQuadCurve(to: CGPoint(x: 0, y: rect.width/2), control: CGPoint(x: 0, y: 0))
+            path.addQuadCurve(to: CGPoint(x: rect.width/2, y: rect.width), control: CGPoint(x: 0, y: rect.width))
+            path.closeSubpath()
+        }
+    }
+}
+
+
 struct ContentView: View {
     var body: some View {
+        
+        
         ZStack{
             //backgrounp
             Image("background")
@@ -780,7 +796,60 @@ struct ContentView: View {
                 }
             }
             .offset(x:0*0.4, y:580*0.4)
+            //text
+            Text("Bart Simpson!!Bart Simpson!!Bart Simpson!!")
+                .foregroundColor(Color.white)
+                .offset(x: 0, y: 308)
+            //decoration
+            Group{
+                ball()
+                    .fill(Color.purple)
+                    .frame(width: 40, height: 40)
+                    .offset(x:-190, y:370)
+                ball()
+                    .fill(Color.red)
+                    .frame(width: 30, height: 30)
+                    .offset(x:-150, y:350)
+                ball()
+                    .fill(Color.orange)
+                    .frame(width: 40, height: 40)
+                    .offset(x:-110, y:370)
+                ball()
+                    .fill(Color.yellow)
+                    .frame(width: 30, height: 30)
+                    .offset(x:-70, y:350)
+                ball()
+                    .fill(Color.green)
+                    .frame(width: 40, height: 40)
+                    .offset(x:-30, y:370)
+                ball()
+                    .fill(Color.blue)
+                    .frame(width: 30, height: 30)
+                    .offset(x:10, y:350)
+                ball()
+                    .fill(Color.purple)
+                    .frame(width: 40, height: 40)
+                    .offset(x:50, y:370)
+                ball()
+                    .fill(Color.red)
+                    .frame(width: 30, height: 30)
+                    .offset(x:90, y:350)
+                ball()
+                    .fill(Color.orange)
+                    .frame(width: 40, height: 40)
+                    .offset(x:130, y:370)
+                ball()
+                    .fill(Color.yellow)
+                    .frame(width: 30, height: 30)
+                    .offset(x:170, y:350)
+            }
         }
+    }
+}
+
+struct ContentView_LibraryContent: LibraryContentProvider {
+    static var views: [LibraryItem] {
+        [LibraryItem(ContentView(), title: "Bart Simpson <3", category: .control)]
     }
 }
 
